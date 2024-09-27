@@ -3,9 +3,10 @@ import 'dart:math';
 import 'dart:ui';
 import 'package:flame/camera.dart';
 import 'package:flame/components.dart';
+import 'package:flame/events.dart';
 import 'package:flame/game.dart';
-import 'package:flame/parallax.dart';
 import 'package:flappy_dash/component/dash.dart';
+import 'package:flappy_dash/component/dash_parallax_bg.dart';
 
 class FlappyDashGame extends FlameGame {
   FlappyDashGame()
@@ -17,32 +18,19 @@ class FlappyDashGame extends FlameGame {
             ));
 }
 
-class FlappyDashWorld extends World {
+class FlappyDashWorld extends World with TapCallbacks {
+  late Dash _dash;
   @override
   FutureOr<void> onLoad() async {
     super.onLoad();
     add(DashBackground());
-    add(Dash());
+    add(_dash = Dash());
   }
-}
 
-class DashBackground extends ParallaxComponent<FlappyDashGame> {
   @override
-  Future<void> onLoad() async {
-    anchor = Anchor.center;
-    parallax = await game.loadParallax(
-      [
-        ParallaxImageData('background/bg2.jpg'),
-      ],
-      baseVelocity: Vector2(1, 0),
-      velocityMultiplierDelta: Vector2(100, 0),
-    );
-  }
-}
-
-class MyGame extends FlameGame {
-  @override
-  void onLoad() {
-    add(DashBackground());
+  void onTapDown(TapDownEvent event) {
+    // TODO: implement onTapDown
+    super.onTapDown(event);
+    _dash.jump();
   }
 }

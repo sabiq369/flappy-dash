@@ -10,6 +10,8 @@ class Dash extends PositionComponent {
             size: Vector2.all(80),
             anchor: Anchor.center);
   late Sprite _flappySprite;
+  final Vector2 _gravity = Vector2(0, 900), _jumpForce = Vector2(0, -400);
+  Vector2 _velocity = Vector2(0, 10);
 
   @override
   Future<void> onLoad() async {
@@ -20,7 +22,12 @@ class Dash extends PositionComponent {
   @override
   void update(double dt) {
     super.update(dt);
-    position += Vector2(0, 0);
+    _velocity += _gravity * dt;
+    position += _velocity * dt;
+  }
+
+  void jump() {
+    _velocity = _jumpForce;
   }
 
   @override

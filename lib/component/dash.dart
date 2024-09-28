@@ -7,10 +7,10 @@ class Dash extends PositionComponent {
   Dash()
       : super(
             position: Vector2(0, 0),
-            size: Vector2.all(80),
+            size: Vector2.all(50),
             anchor: Anchor.center);
   late Sprite _flappySprite;
-  final Vector2 _gravity = Vector2(0, 900), _jumpForce = Vector2(0, -400);
+  final Vector2 _gravity = Vector2(0, 900), _jumpForce = Vector2(0, -350);
   Vector2 _velocity = Vector2(0, 10);
 
   @override

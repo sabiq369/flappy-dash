@@ -5,12 +5,12 @@ import 'package:flame/events.dart';
 import 'package:flame/game.dart';
 import 'package:flappy_dash/component/dash.dart';
 import 'package:flappy_dash/component/dash_parallax_bg.dart';
-import 'package:flappy_dash/component/pipe.dart';
 import 'package:flappy_dash/component/pipe_pair.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 
-class FlappyDashGame extends FlameGame<FlappyDashWorld> with KeyboardEvents {
+class FlappyDashGame extends FlameGame<FlappyDashWorld>
+    with KeyboardEvents, HasCollisionDetection {
   FlappyDashGame()
       : super(
           world: FlappyDashWorld(),
@@ -37,19 +37,40 @@ class FlappyDashGame extends FlameGame<FlappyDashWorld> with KeyboardEvents {
   }
 }
 
-class FlappyDashWorld extends World with TapCallbacks {
+class FlappyDashWorld extends World
+    with TapCallbacks, HasGameRef<FlappyDashGame> {
   late Dash _dash;
+  late PipePair _lastPipe;
+  static const _pipeDistance = 400.0;
+  int _score = 0;
+  late TextComponent _scoreText;
 
   @override
   void onLoad() {
     super.onLoad();
     add(DashBackground());
     add(_dash = Dash());
-    const distance = 350.0;
-    for (int i = 0; i < 20; i++) {
+    _generatePipes(fromX: 350.0);
+    game.camera.viewfinder.add(
+      _scoreText = TextComponent(
+        text: _score.toString(),
+        position: Vector2(
+          0,
+          -(game.size.y / 2),
+        ),
+      ),
+    );
+  }
+
+  void _generatePipes({
+    int count = 5,
+    double fromX = 0.0,
+  }) {
+    for (int i = 0; i < count; i++) {
       const area = 700;
       final y = (Random().nextDouble() * area) - (area / 2);
-      add(PipePair(position: Vector2(i * distance, y)));
+      add(_lastPipe =
+          PipePair(position: Vector2(fromX + (i * _pipeDistance), y)));
     }
   }
 
@@ -61,5 +82,27 @@ class FlappyDashWorld extends World with TapCallbacks {
 
   void onSpaceDown() {
     _dash.jump();
+  }
+
+  void _removeOldPipes() {
+    final pipes = children.whereType<PipePair>();
+    final shouldBeRemoved = max(pipes.length - 5, 0);
+    pipes.take(shouldBeRemoved).forEach(
+      (pipe) {
+        pipe.removeFromParent();
+      },
+    );
+  }
+
+  void increaseScore() => _score += 1;
+
+  @override
+  void update(double dt) {
+    super.update(dt);
+    _scoreText.text = _score.toString();
+    if (_dash.x >= _lastPipe.x) {
+      _generatePipes(fromX: _pipeDistance);
+      _removeOldPipes();
+    }
   }
 }

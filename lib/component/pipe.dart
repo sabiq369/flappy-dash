@@ -1,5 +1,6 @@
 import 'dart:ui';
 
+import 'package:flame/collisions.dart';
 import 'package:flame/components.dart';
 
 class Pipe extends PositionComponent {
@@ -9,20 +10,20 @@ class Pipe extends PositionComponent {
   Pipe({
     required this.isFlipped,
     required super.position,
-  });
+  }) : super(priority: 2, anchor: Anchor.center);
 
   @override
   Future<void> onLoad() async {
     await super.onLoad();
     _pipeSprite = await Sprite.load("pipe4.png");
-
     anchor = Anchor.topCenter;
     final ratio = _pipeSprite.srcSize.y / _pipeSprite.srcSize.x;
-    const width = 200.0;
+    const width = 75.0;
     size = Vector2(width, width * ratio);
     if (isFlipped) {
       flipVertically();
     }
+    add(RectangleHitbox());
   }
 
   @override
@@ -31,7 +32,7 @@ class Pipe extends PositionComponent {
     _pipeSprite.render(
       canvas,
       position: Vector2.zero(),
-      size: Vector2(80, 1000),
+      size: Vector2(78, 1000),
     );
   }
 }

@@ -1,4 +1,4 @@
-import 'package:flappy_dash/first_screen/main_page.dart';
+import 'package:flappy_dash/main_page.dart';
 import 'package:flutter/material.dart';
 
 void main() {

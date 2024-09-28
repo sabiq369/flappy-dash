@@ -1,7 +1,7 @@
 import 'package:flame/components.dart';
 import 'package:flame/parallax.dart';
 
-import '../flappy_dash_game/view/flappy_dash_game.dart';
+import '../flappy_dash_game.dart';
 
 class DashBackground extends ParallaxComponent<FlappyDashGame> {
   @override

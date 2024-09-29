@@ -13,9 +13,7 @@ class DashBackground extends ParallaxComponent<FlappyDashGame>
     anchor = Anchor.center;
     parallax = await game.loadParallax(
       [
-        ParallaxImageData(
-          'background/bg5.png',
-        ),
+        ParallaxImageData('bg5.png'),
       ],
       baseVelocity: Vector2(1, 0),
       velocityMultiplierDelta: Vector2(100, 0),

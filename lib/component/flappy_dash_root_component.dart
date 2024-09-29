@@ -14,21 +14,12 @@ class FlappyDashRootComponent extends Component
   late Dash _dash;
   late PipePair _lastPipe;
   static const _pipeDistance = 400.0;
-  late TextComponent _scoreText;
   @override
   Future onLoad() async {
     await super.onLoad();
     add(DashBackground());
     add(_dash = Dash());
     _generatePipes(fromX: 350.0);
-    game.camera.viewfinder.add(
-      _scoreText = TextComponent(
-        position: Vector2(
-          0,
-          -(game.size.y / 2),
-        ),
-      ),
-    );
   }
 
   void _generatePipes({
@@ -66,7 +57,6 @@ class FlappyDashRootComponent extends Component
   @override
   void update(double dt) {
     super.update(dt);
-    _scoreText.text = bloc.state.currentScore.toString();
     if (_dash.x >= _lastPipe.x) {
       _generatePipes(fromX: _pipeDistance);
       _removeOldPipes();

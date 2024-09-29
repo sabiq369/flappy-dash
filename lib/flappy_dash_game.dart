@@ -1,14 +1,11 @@
-import 'dart:math';
-
 import 'package:flame/components.dart';
 import 'package:flame/events.dart';
 import 'package:flame/game.dart';
 import 'package:flame_bloc/flame_bloc.dart';
+import 'package:flappy_dash/audio_helper.dart';
 import 'package:flappy_dash/bloc/game/game_cubit.dart';
-import 'package:flappy_dash/component/dash.dart';
-import 'package:flappy_dash/component/dash_parallax_bg.dart';
 import 'package:flappy_dash/component/flappy_dash_root_component.dart';
-import 'package:flappy_dash/component/pipe_pair.dart';
+import 'package:flappy_dash/service_locator.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 
@@ -46,8 +43,9 @@ class FlappyDashWorld extends World
     with TapCallbacks, HasGameRef<FlappyDashGame> {
   late FlappyDashRootComponent _rootComponent;
   @override
-  void onLoad() {
+  Future<void> onLoad() async {
     super.onLoad();
+    await getIt.get<AudioHelper>().initialize();
     add(
       FlameBlocProvider<GameCubit, GameState>(
         create: () => game.gameCubit,

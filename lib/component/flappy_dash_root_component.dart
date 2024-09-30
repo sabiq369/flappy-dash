@@ -23,11 +23,11 @@ class FlappyDashRootComponent extends Component
   }
 
   void _generatePipes({
-    int count = 5,
+    int count = 10,
     double fromX = 0.0,
   }) {
     for (int i = 0; i < count; i++) {
-      const area = 700;
+      const area = 200;
       final y = (Random().nextDouble() * area) - (area / 2);
       add(_lastPipe =
           PipePair(position: Vector2(fromX + (i * _pipeDistance), y)));

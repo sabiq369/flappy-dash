@@ -18,7 +18,9 @@ class Pipe extends PositionComponent {
     _pipeSprite = await Sprite.load("pipe4.png");
     anchor = Anchor.topCenter;
     final ratio = _pipeSprite.srcSize.y / _pipeSprite.srcSize.x;
-    const width = 75.0;
+    const width = 82.0;
+
+    // size = Vector2(200, size.y / 2);
     size = Vector2(width, width * ratio);
     if (isFlipped) {
       flipVertically();
@@ -29,10 +31,6 @@ class Pipe extends PositionComponent {
   @override
   void render(Canvas canvas) {
     super.render(canvas);
-    _pipeSprite.render(
-      canvas,
-      position: Vector2.zero(),
-      size: Vector2(78, 1000),
-    );
+    _pipeSprite.render(canvas, position: Vector2.zero(), size: size);
   }
 }

@@ -13,7 +13,7 @@ class DashBackground extends ParallaxComponent<FlappyDashGame>
     anchor = Anchor.center;
     parallax = await game.loadParallax(
       [
-        ParallaxImageData('bg5.png'),
+        ParallaxImageData('bg.png'),
       ],
       baseVelocity: Vector2(1, 0),
       velocityMultiplierDelta: Vector2(100, 0),
@@ -21,7 +21,7 @@ class DashBackground extends ParallaxComponent<FlappyDashGame>
   }
 
   @override
-  void update(double dt) {
+  void update(double dt) async {
     switch (bloc.state.currentPlayingState) {
       case PlayingState.none:
       case PlayingState.playing:

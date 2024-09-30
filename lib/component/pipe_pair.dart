@@ -6,7 +6,7 @@ import 'package:flappy_dash/component/pipe.dart';
 
 class PipePair extends PositionComponent
     with FlameBlocReader<GameCubit, GameState> {
-  PipePair({required super.position, this.gap = 150.0, this.speed = 120.0});
+  PipePair({required super.position, this.gap = 200.0, this.speed = 120.0});
   final double gap, speed;
 
   @override
@@ -15,8 +15,8 @@ class PipePair extends PositionComponent
 
     addAll(
       [
-        Pipe(isFlipped: false, position: Vector2(0, gap / 2)),
-        Pipe(isFlipped: true, position: Vector2(0, -(gap / 2))),
+        Pipe(isFlipped: false, position: Vector2(0, gap / 3)),
+        Pipe(isFlipped: true, position: Vector2(0, -(gap / 3))),
         HiddenCoin(position: Vector2(30, 0)),
       ],
     );

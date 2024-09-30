@@ -16,14 +16,15 @@ class AudioHelper {
   }
 
   void playBackgroundAudio() async {
-    _playingBackground = await _soLoud.play(_backgroundSource);
+    _playingBackground = await _soLoud.play(_backgroundSource, looping: true);
   }
 
   void stopBackgroundAudio() {
     if (_playingBackground == null) {
       return;
     }
-    _soLoud.fadeVolume(_playingBackground!, 0.0, Duration(milliseconds: 500));
+    _soLoud.fadeVolume(
+        _playingBackground!, 0.0, const Duration(milliseconds: 500));
   }
 
   void playScoreSound() async {

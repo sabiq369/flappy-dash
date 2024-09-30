@@ -80,7 +80,7 @@ class _MainPageState extends State<MainPage> {
                     padding: const EdgeInsets.only(top: 25),
                     child: Text(
                       state.currentScore.toString(),
-                      style: GoogleFonts.chewy(fontSize: 25, color: Colors.red),
+                      style: GoogleFonts.chewy(fontSize: 30, color: Colors.red),
                     ),
                   ),
                 )

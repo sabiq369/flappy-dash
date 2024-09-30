@@ -2,7 +2,6 @@ import 'dart:ui';
 
 import 'package:flappy_dash/bloc/game/game_cubit.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_animate/flutter_animate.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:google_fonts/google_fonts.dart';
 
@@ -30,7 +29,7 @@ class GameOverWidget extends StatelessWidget {
                         fontSize: 38),
                   ),
                   Padding(
-                    padding: EdgeInsets.symmetric(vertical: 20),
+                    padding: const EdgeInsets.symmetric(vertical: 20),
                     child: Text(
                       'SCORE: ${state.currentScore}',
                       style: GoogleFonts.chewy(

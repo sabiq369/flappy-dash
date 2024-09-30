@@ -40,11 +40,16 @@ class Dash extends PositionComponent
   @override
   void update(double dt) {
     super.update(dt);
+
     if (bloc.state.currentPlayingState != PlayingState.playing) {
       return;
     }
+
     _velocity += _gravity * dt;
     position += _velocity * dt;
+    if (position.y - size.y / 2 > gameRef.size.y) {
+      bloc.gameOver();
+    }
   }
 
   void jump() {

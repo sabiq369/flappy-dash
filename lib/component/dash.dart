@@ -44,12 +44,13 @@ class Dash extends PositionComponent
     if (bloc.state.currentPlayingState != PlayingState.playing) {
       return;
     }
+    if (position.y - size.y / 2 > gameRef.size.y) {
+      bloc.gameOver();
+      return;
+    }
 
     _velocity += _gravity * dt;
     position += _velocity * dt;
-    if (position.y - size.y / 2 > gameRef.size.y) {
-      bloc.gameOver();
-    }
   }
 
   void jump() {

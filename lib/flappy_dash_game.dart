@@ -45,7 +45,6 @@ class FlappyDashWorld extends World
   @override
   Future<void> onLoad() async {
     super.onLoad();
-    await getIt.get<AudioHelper>().initialize();
     add(
       FlameBlocProvider<GameCubit, GameState>(
         create: () => game.gameCubit,
@@ -54,6 +53,7 @@ class FlappyDashWorld extends World
         ],
       ),
     );
+    await getIt.get<AudioHelper>().initialize();
   }
 
   void onSpaceDown() {

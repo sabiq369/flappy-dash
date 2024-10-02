@@ -16,7 +16,10 @@ class AudioHelper {
   }
 
   void playBackgroundAudio() async {
-    _playingBackground = await _soLoud.play(_backgroundSource, looping: true);
+    _playingBackground = await _soLoud.play(
+      _backgroundSource,
+      looping: true,
+    );
   }
 
   void stopBackgroundAudio() {

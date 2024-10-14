@@ -1,6 +1,5 @@
 import 'package:flame/collisions.dart';
 import 'package:flame/components.dart';
-import 'package:flame/image_composition.dart';
 
 class HiddenCoin extends PositionComponent {
   HiddenCoin({

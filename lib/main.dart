@@ -32,7 +32,7 @@ class MyApp extends StatelessWidget {
       ),
       home: BlocProvider(
         create: (context) => GameCubit(getIt.get<AudioHelper>()),
-        child: MainPage(),
+        child: const MainPage(),
       ),
     );
   }

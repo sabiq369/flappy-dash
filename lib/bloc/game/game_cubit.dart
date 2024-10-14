@@ -1,6 +1,6 @@
-import 'package:bloc/bloc.dart';
 import 'package:equatable/equatable.dart';
 import 'package:flappy_dash/audio_helper.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 
 part 'game_state.dart';
 

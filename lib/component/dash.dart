@@ -67,8 +67,8 @@ class Dash extends PositionComponent
   }
 
   @override
-  void onCollision(Set<Vector2> points, PositionComponent other) {
-    super.onCollision(points, other);
+  void onCollision(Set<Vector2> intersectionPoints, PositionComponent other) {
+    super.onCollision(intersectionPoints, other);
     if (bloc.state.currentPlayingState != PlayingState.playing) {
       return;
     }
@@ -76,7 +76,6 @@ class Dash extends PositionComponent
       bloc.increaseScore();
       other.removeFromParent();
     } else if (other is Pipe) {
-      print('GAME OVERRR!!!!');
       bloc.gameOver();
     }
   }
